@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGOF Controlling</title>
+</head>
+
+<body>
+    <h1>Hi nerds, want to take control AGOF ?</h1>
+
+
+    <input style="width: 185px; border-radius: 3px; border-color: black; border-style: solid; height: 30px;" type="text"
+        placeholder="What do you want to send, n.e.r.d ?" id="stupid_mess">
+
+    <br>
+    <br>
+
+    <button id="lol" onclick="send()">Send these stupid mess for me, please</button>
+
+
+
+    <script>
+        var input = document.getElementById("stupid_mess")
+
+        input.addEventListener("keyup", function (event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("lol").click();
+            }
+        });
+
+        function send() {
+            var api_token = "https://powerful-bastion-70160.herokuapp.com/api"
+            var stupid_mess = document.getElementById('stupid_mess').value
+
+            const request = new XMLHttpRequest();
+            request.open("POST", api_token);
+
+            request.setRequestHeader('Content-type', 'application/json');
+
+            const params = {
+                content: stupid_mess
+            }
+
+            request.send(JSON.stringify(params));
+        }
+    </script>
+</body>
+
+</html>
